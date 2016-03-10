@@ -1,0 +1,29 @@
+<!DOCTYPE html> <!-- This tells the browser what language it's reading -->
+<html> <!--  This starts the HTML document -->
+    <head> <!--  head contains information about your HTML file -->
+        <link rel="stylesheet" type="text/css" href="interface.css" />
+        <title>Data Test</title> <!--  title is what we see in the browser's title  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> <!--Loading JQuery-->
+        <script type="text/javascript" src="main.js"></script> <!--Loading main.js-->
+    </head>
+    
+    <body>
+        <button onclick=manualClick()>+Income</button>
+        <br />
+        Time: <span id="time">0</span>s
+        <br />
+        Progress: <span id="progress">0</span>%
+        <br />
+<!--        Balance: <span id="resources">0</span>
+        <br /> -->
+        Level: <span id="level">0</span>
+        <br />
+        Target: <span id="target">0</span>
+        <br />
+        <button onclick="buyInvestments()">Invest Capital</button>
+        <br />
+        Investments: <span id="investments">0</span>
+        <br />
+        Investments Cost: <span id="investmentCost">10</span>
+    </body>
+</html>
