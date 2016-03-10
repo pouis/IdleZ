@@ -1,29 +1,46 @@
 <!DOCTYPE html> <!-- This tells the browser what language it's reading -->
-<html> <!--  This starts the HTML document -->
+<html lang="en"> <!--  This starts the HTML document -->
     <head> <!--  head contains information about your HTML file -->
-        <link rel="stylesheet" type="text/css" href="interface.css" />
+        <meta charset="utf-8">
+        <!-- defining device responsive width and zoom scale to 1 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="stylesheet.css" />
         <title>Data Test</title> <!--  title is what we see in the browser's title  -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> <!--Loading JQuery-->
-        <script type="text/javascript" src="main.js"></script> <!--Loading main.js-->
+        
+        <!--Loading JQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
+        <!--Loading bootstrap CSS and JS-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!--Loading main.js-->
+        <script type="text/javascript" src="main.js"></script>
+        
     </head>
     
-    <body>
-        <button onclick=manualClick()>+Income</button>
-        <br />
-        Time: <span id="time">0</span>s
-        <br />
-        Progress: <span id="progress">0</span>%
-        <br />
-<!--        Balance: <span id="resources">0</span>
-        <br /> -->
-        Level: <span id="level">0</span>
-        <br />
-        Target: <span id="target">0</span>
-        <br />
-        <button onclick="buyInvestments()">Invest Capital</button>
-        <br />
-        Investments: <span id="investments">0</span>
-        <br />
-        Investments Cost: <span id="investmentCost">10</span>
-    </body>
+    <div class="container-fluid">
+        <body>
+            <button onclick=manualClick()>+Income</button>
+            <br />
+            Time: <span id="time">0</span>s
+            <br />
+            Progress: <span id="progress">0</span>%
+            <br />
+            
+            <div id="myProgress">
+                <div id="myBar"></div>
+                <div id="label"></div>
+            </div>
+        <!--    Balance: <span id="resources">0</span>
+            <br /> -->
+            Level: <span id="level">0</span>
+            <br />
+            Target: <span id="target">0</span>
+            <br />
+            <button onclick="buyInvestments()">Invest Capital</button>
+            <br />
+            Investments: <span id="investments">0</span>
+            <br />
+            Investments Cost: <span id="investmentCost">10</span>
+        </body>
+    </div>
 </html>

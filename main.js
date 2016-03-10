@@ -1,6 +1,6 @@
 var resources = 0;
 var income = 1;
-var investments = 1;
+var investments = 1; //1e300 seems to be the max
 var level = 1;
 var progress = 0;
 var invLevel=0;
@@ -35,9 +35,8 @@ function buyInvestments(){
 };
 
 function targeting(){
-    //var target = 10 * Math.pow(level,4);
     var target = Math.floor( 10 * Math.pow(1.5, level)-14)*10;
-    progress = Math.floor((resources-previousTarget) / (target-previousTarget) * 100);
+    progress = Math.min(Math.floor((resources-previousTarget) / (target-previousTarget) * 100),100);
     if(resources >= target){
         previousTarget = target;
         level = level+1;
@@ -47,6 +46,14 @@ function targeting(){
     document.getElementById("progress").innerHTML = "Search in progress... "+progress;
 };
 
+function barUpdate(){
+    var pBar = document.getElementById("myBar");
+    pBar.style.width = progress + '%';
+    var pLabel = document.getElementById("label");
+    document.getElementById("label").innerHTML=progress+'%';
+};
+
+
 function timecount(){
     timeCounter += 1
     document.getElementById("time").innerHTML = 30-Math.floor(timeCounter/100);
@@ -55,5 +62,6 @@ function timecount(){
 window.setInterval(function(){
     autoClick(investments);
     targeting();
-    timecount()
+    timecount();
+    barUpdate();
 }, 10);
