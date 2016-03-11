@@ -1,20 +1,22 @@
 var resources = 0;
-var income = 1;
-var investments = 1; //1e300 seems to be the max
-var level = 1;
+var clickIncome = 10;
+var crawlSpeed = 1;
+var areaLevel = 1;
 var progress = 0;
-var invLevel=0;
-var previousTarget=0;
+var invLevel=1;
+var previousTarget=100;
 var timeCounter = 0;
+var material = 0;
+var encount = 0;
+var sentou = 0;
+var tekiHP=100, tekiTotalHP=100;
 
 function manualClick(){
-    resources = resources + income;
-    //document.getElementById("resources").innerHTML = resources;
+    resources = resources + clickIncome;
 };
 
 function autoClick(number){
     resources = resources + number;
-   //document.getElementById("resources").innerHTML = resources;
 };
 
 function buyInvestments(){
@@ -28,40 +30,72 @@ function buyInvestments(){
     //var nextCost = Math.floor(10 * Math.pow(1.1, investments));
     //document.getElementById("investmentCost").innerHTML = nextCost;
     invLevel=invLevel+1;
-    investments = Math.floor( 10 * Math.pow(1.5, invLevel)-10);
-    document.getElementById("investments").innerHTML = investments;
-    level = 1;
+    crawlSpeed = Math.round(crawlSpeed * 1.5*100)/100;
+    document.getElementById("investments").innerHTML = crawlSpeed;
+    areaLevel = 1;
     resources=0;
+    previousTarget=100;
 };
 
 function targeting(){
-    var target = Math.floor( 10 * Math.pow(1.5, level)-14)*10;
-    progress = Math.min(Math.floor((resources-previousTarget) / (target-previousTarget) * 100),100);
+    var target = Math.floor(previousTarget * 1.5)
+    progress = Math.min(Math.floor(resources / target * 100),100);
     if(resources >= target){
         previousTarget = target;
-        level = level+1;
+        areaLevel = areaLevel+1;
+        resources = resources - target
+        material=material+Math.floor((Math.random() * 10) + 1)
+        document.getElementById("material").innerHTML = material;
     };
+        
     document.getElementById("target").innerHTML = target;
-    document.getElementById("level").innerHTML = level;
+    document.getElementById("level").innerHTML = areaLevel;
     document.getElementById("progress").innerHTML = "Search in progress... "+progress;
 };
 
 function barUpdate(){
-    var pBar = document.getElementById("myBar");
-    pBar.style.width = progress + '%';
-    var pLabel = document.getElementById("label");
-    document.getElementById("label").innerHTML=progress+'%';
+    var areaBar = document.getElementById("areaBar");
+    areaBar.style.width = progress + '%';
+    var areaLabel = document.getElementById("areaLabel");
+    document.getElementById("areaLabel").innerHTML=progress+'%';
+    
+    var batBar = document.getElementById("batBar");
+    batBar.style.width = Math.floor(tekiHP/tekiTotalHP*100) + '%';
+    var batLabel = document.getElementById("batLabel");
+    document.getElementById("batLabel").innerHTML=Math.floor(tekiHP/tekiTotalHP*100)+'%';
 };
 
 
 function timecount(){
-    timeCounter += 1
+    timeCounter += 1 ;
     document.getElementById("time").innerHTML = 30-Math.floor(timeCounter/100);
 };
 
+function encounter(){
+    if(sentou==0){
+        var encountTest=Math.floor((Math.random() * 100) + 1);
+        if (encountTest == 1){
+            encount += 1 ;
+            document.getElementById("encount").innerHTML = encount;
+            sentou = 1;
+            tekiTotalHP=100*areaLevel;
+            tekiHP=tekiTotalHP;
+        };
+    } else{
+        tekiHP=tekiHP-5;
+        if(tekiHP<=0){
+            sentou=0;
+            tekiHP=0;
+        };
+    };
+};
+
 window.setInterval(function(){
-    autoClick(investments);
-    targeting();
+    if(sentou==0){
+        autoClick(crawlSpeed);
+        targeting();
+    };
     timecount();
     barUpdate();
+    encounter();
 }, 10);

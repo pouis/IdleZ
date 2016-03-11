@@ -17,21 +17,25 @@
         
     </head>
     
-    <div class="container-fluid">
-        <body>
-            <button onclick=manualClick()>+Income</button>
+    <body>
+        <div class="container-fluid">
+            <button class="btn btn-primary btn-sm" onclick=manualClick()>+Income</button>
             <br />
             Time: <span id="time">0</span>s
             <br />
             Progress: <span id="progress">0</span>%
             <br />
             
-            <div id="myProgress">
-                <div id="myBar"></div>
-                <div id="label"></div>
+            <div id="areaProgress">
+                <div id="areaBar"></div>
+                <div id="areaLabel"></div>
             </div>
-        <!--    Balance: <span id="resources">0</span>
-            <br /> -->
+            <br/>
+            <div id="batProgress">
+                <div id="batBar"></div>
+                <div id="batLabel"></div>
+            </div>
+            
             Level: <span id="level">0</span>
             <br />
             Target: <span id="target">0</span>
@@ -41,6 +45,10 @@
             Investments: <span id="investments">0</span>
             <br />
             Investments Cost: <span id="investmentCost">10</span>
-        </body>
-    </div>
+            <br />
+            Material: <span id="material">0</span>
+            <br />
+            Encount: <span id="encount">0</span>  
+        </div>
+    </body>
 </html>
