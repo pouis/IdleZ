@@ -3,15 +3,14 @@ var clickIncome = 10;
 var crawlSpeed = 1, crawlSpeedMultiple = 1;
 var areaLevel = 1;
 var progress = 0;
-var crawlLevel=1;
-var previousTarget=100;
+var crawlLevel=1, weaponLevel=1;
 var timeCounter = 0;
 var gold = 0;
 var encount = 0;
 var sentou = 0;
 var tekiHP=100, tekiTotalHP=100, tekiAtt=1;
 var exp=0;
-var myHP=100, myAtt=1;
+var myHP=100, myAtt=10;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -26,48 +25,38 @@ function autoClick(){
 };
 
 function buyInvestments(){
-    var investmentCost = Math.floor( 10 * Math.pow(1.1, crawlLevel));
+    var investmentCost = Math.floor( 10 * Math.pow(1.10, crawlLevel));
     if(exp >= investmentCost){
-        crawlLevel=crawlLevel+1;
         exp = exp - investmentCost;
-        crawlSpeed = Math.round(crawlSpeed * 1.5 * 100)/100; // the "* 100 / 100" is to allow 2 digits after 0
+        crawlSpeed = Math.round( Math.pow(1.50, crawlLevel)*100)/100; // the "* 100 / 100" is to allow 2 digits after 0
+        crawlLevel=crawlLevel+1;
         document.getElementById("crawlLevel").innerHTML = crawlLevel;
-    //    document.getElementById("resources").innerHTML = resources;
+        document.getElementById("crawlSpeed").innerHTML = crawlSpeed;
         //areaLevel = 1;
         //resources=0;
-        //previousTarget=100;
-    
-    
     };
     var nextCost = Math.floor(10 * Math.pow(1.1, crawlLevel));
     document.getElementById("investmentCost").innerHTML = nextCost;
-    //crawlLevel=crawlLevel+1;
-    //crawlSpeed = Math.round(crawlSpeed * 1.5 * 100)/100; // the "* 100 / 100" is to allow 2 digits after 0
     document.getElementById("crawlLevel").innerHTML = crawlLevel;
-    //areaLevel = 1;
-    //resources=0;
-    //previousTarget=100;
     document.getElementById("exp").innerHTML = exp;
 };
 
 function buyW(){
-    var purchaseCost = 5;
+    var purchaseCost = Math.floor(5 * Math.pow(1.1, weaponLevel));
     if(gold>=purchaseCost){
         gold = gold - purchaseCost;
         myAtt += 1;
+        weaponLevel += 1;
         areaLevel = 1;
         resources=0;
-        previousTarget=100;
     };
     document.getElementById("gold").innerHTML = gold;
-    
 };
 
 function crawling(){
-    var target = Math.floor(previousTarget * 1.5)
+    var target = Math.floor(100 * Math.pow(1.5, areaLevel));
     progress = Math.min(Math.floor(resources / target * 100),100);
     if(resources >= target){
-        previousTarget = target;
         areaLevel = areaLevel+1;
         resources = resources - target
         gold=gold+Math.floor((Math.random() * areaLevel) + 1)
@@ -115,6 +104,10 @@ function encounter(){
             exp += Math.floor(tekiTotalHP/100);
             document.getElementById("exp").innerHTML = exp;
         };
+        if(timeCounter%5==0){
+            myHP=myHP-tekiAtt;
+            document.getElementById("myHP").innerHTML = myHP;
+        };
     };
 };
 
@@ -126,4 +119,8 @@ window.setInterval(function(){
     timecount();
     barUpdate();
     encounter();
+    buyInvestments();
 }, 10);
+
+//Skill
+//Fully Heal when lvlup
