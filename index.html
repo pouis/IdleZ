@@ -14,48 +14,61 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <!--Loading main.js-->
         <script type="text/javascript" src="main.js"></script>
+        <!--Loading waterbubble.js-->
+        <script src="waterbubble.js" type="text/javascript"></script>
         
     </head>
     
     <body>
         <div class="container-fluid">
-            <button class="btn btn-primary btn-sm" onclick=manualClick()>+Income</button>
-            <br />
-            Time: <span id="time">0</span>s
-            <br />
-            Progress: <span id="progress">0</span>%
-            <br />
-            
-            <div id="areaProgress">
-                <div id="areaBar"></div>
-                <div id="areaLabel"></div>
-            </div>
-            <br/>
-            <div id="batProgress">
-                <div id="batBar"></div>
-                <div id="batLabel"></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- <button class="btn btn-primary btn-sm" onclick=manualClick()>+Income</button>
+                    <br /> -->
+                    Area Level: <span id="areaLevel">0</span>
+                    <br />
+                    <span id="progress"></span>
+                    <br />
+                </div>
             </div>
             
-            Area Level: <span id="areaLevel">0</span>
-            <br />
-            Target: <span id="target">0</span>
-            <br />
-            <button onclick="buyInvestments()">Invest C</button>
-            <button onclick="buyW()">Invest W</button>
-            <br />
-            Investments: <span id="crawlLevel">0</span>
-            <br />
-            Investments Cost: <span id="investmentCost">10</span>
-            <br />
-            Exp: <span id="exp">0</span>
-            <br />
-            Material: <span id="gold">0</span>
-            <br />
-            Encount: <span id="encount">0</span>
-                        <br />
-            Speed: <span id="crawlSpeed">1.00</span>
-                        <br />
-            HP: <span id="myHP">100</span>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="areaProgress">
+                        <div id="areaBar"></div>
+                        <div id="areaLabel"></div>
+                    </div>
+                    <br/>
+                    <div id="batProgress">
+                        <div id="batBar"></div>
+                        <div id="batLabel"></div>
+                    </div>
+                </div>
+            </div>
+            
+
+        Target: <span id="target">0</span>
+        <br />
+        <button onclick="buyInvestments()">Invest C</button>
+        <button onclick="buyW()">Invest W</button>
+        <br />
+        Investments: <span id="crawlLevel">0</span>
+        <br />
+        Investments Cost: <span id="investmentCost">10</span>
+        <br />
+        Exp: <span id="exp">0</span>
+        <br />
+        Material: <span id="gold">0</span>
+        <br />
+        Encount: <span id="encount">0</span>
+        <br />
+        Speed: <span id="crawlSpeed">1.00</span>
+        <br />
+        HP: <span id="myHP">100</span>
+        <br />
+        Time: <span id="time">0</span>s
+        <br />
+        <canvas id="hpMeter"></canvas>
         </div>
     </body>
 </html>

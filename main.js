@@ -10,7 +10,7 @@ var encount = 0;
 var sentou = 0;
 var tekiHP=100, tekiTotalHP=100, tekiAtt=1;
 var exp=0;
-var myHP=100, myAtt=10;
+var myHP=100, myTotalHP=100, myHPpc=1, myAtt=10;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -78,6 +78,9 @@ function barUpdate(){
     batBar.style.width = Math.floor(tekiHP/tekiTotalHP*100) + '%';
     var batLabel = document.getElementById("batLabel");
     document.getElementById("batLabel").innerHTML=tekiHP+' / '+tekiTotalHP;
+    
+    $('#hpMeter').waterbubble({radius: 50, lineWidth:1, txt: 'HP', data:myHPpc, 
+    animation:false, wave:true, waterColor: 'rgba(179, 0, 0, 1)', textColor: 'rgba(06, 85, 128, 0.8)'});
 };
 
 
@@ -106,6 +109,7 @@ function encounter(){
         };
         if(timeCounter%5==0){
             myHP=myHP-tekiAtt;
+            myHPpc=round(myHP/myTotalHP,2)
             document.getElementById("myHP").innerHTML = myHP;
         };
     };
@@ -122,5 +126,28 @@ window.setInterval(function(){
     buyInvestments();
 }, 10);
 
-//Skill
+function round(value, exp) {
+  if (typeof exp === 'undefined' || +exp === 0)
+    return Math.round(value);
+
+  value = +value;
+  exp = +exp;
+
+  if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0))
+    return NaN;
+
+  // Shift
+  value = value.toString().split('e');
+  value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp)));
+
+  // Shift back
+  value = value.toString().split('e');
+  return +(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp));
+}
+//Skills
 //Fully Heal when lvlup
+//
+//Class
+//Paladin: can heal x per s
+//Rogue: increase gold income per x%
+//

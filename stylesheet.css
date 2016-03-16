@@ -1,6 +1,10 @@
+body{
+    width:375px;
+}
+
 #areaProgress {
     position: relative;
-    width: 200px;
+
     height: 20px;
     background-color: grey;
 
@@ -21,7 +25,7 @@
 
 #batProgress {
     position: relative;
-    width: 200px;
+
     height: 10px;
     background-color: grey;
 
