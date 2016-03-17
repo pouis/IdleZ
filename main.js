@@ -12,6 +12,10 @@ var tekiHP=100, tekiTotalHP=100, tekiAtt=1;
 var exp=0;
 var myHP=100, myTotalHP=100, myHPpc=1, myAtt=10;
 
+//window.resizeTo(375,667);
+//var audio = new Audio('bensound-scifi.mp3');
+//audio.play();
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
