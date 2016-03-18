@@ -1,5 +1,13 @@
+/* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 body{
+    background-color:darkgrey !important; 
+}
+
+div.container-fluid{
+    margin: auto;
     width:375px;
+    height: 667px;
+    background-color:lightblue;
 }
 
 #areaProgress {
